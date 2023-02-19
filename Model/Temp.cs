@@ -8,14 +8,14 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace ParkingLot.Model
 {
-    internal class Slots
+    internal class Temp
     {
-        public  List<string> twoWheelerSlots=new List<string>();
+        public List<string> twoWheelerSlots=new List<string>();
         public List<string> fourWheelerSlots=new List<string>();
         public List<string> heavyVehicleSlots=new List<string>();
-        public List<Ticketclass> twoWheelerTickets = new List<Ticketclass>();
-        public List<Ticketclass> fourWheelerTickets = new List<Ticketclass>();
-        public List<Ticketclass> heavyVehicleTickets = new List<Ticketclass>();
+        public List<Ticket> twoWheelerTickets = new List<Ticket>();
+        public List<Ticket> fourWheelerTickets = new List<Ticket>();
+        public List<Ticket> heavyVehicleTickets = new List<Ticket>();
         ViewSlots view = new ViewSlots();
 
         public void InitializeSlots(int noOfTwoWheelers, int noOfFourWheelers, int noOfHeavyVehicles)
@@ -143,7 +143,7 @@ namespace ParkingLot.Model
         }
 
 
-        public Ticketclass TakeTicketInfo(int slotnumber)
+        public Ticket TakeTicketInfo(int slotnumber)
         {
             
             Random random = new Random();
@@ -154,7 +154,7 @@ namespace ParkingLot.Model
             string inTime=Console.ReadLine();
             Console.WriteLine("Enter the Outime");
             string outTime=Console.ReadLine();  
-            Ticketclass temp=new Ticketclass(slotnumber,ticketNumber,vehicleNumber,inTime,outTime);
+            Ticket temp=new Ticket(slotnumber,ticketNumber,vehicleNumber,inTime,outTime);
             return temp;
 
         }
@@ -220,7 +220,7 @@ namespace ParkingLot.Model
             return false;
         }
 
-        public void ShowTicket(Ticketclass ticket)
+        public void ShowTicket(Ticket ticket)
         {
             Console.WriteLine($"************************************\n|    Slot Number ={ticket.slotNumber}               |\n|    Ticket Id = {ticket.ticketId}             |\n|    Vehicle Number = {ticket.vehicleNumber}    |\n|    In Time = {ticket.inTime}               |\n|    Out time = {ticket.outTime}              |\n************************************");
 

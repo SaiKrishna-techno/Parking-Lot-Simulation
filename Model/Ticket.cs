@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace ParkingLot.Model
 {
-    internal interface iTicket
+    internal class Ticket 
     {
-        public string ticketId { get; set; }
-        public string vehicleNumber { get; set; }
+        public int slotNumber;
+        public int ticketId;
+        public string vehicleNumber;
+        public string inTime;
+        public string outTime;
 
-        public string inTime { get; set; }
-
-        public string outTime { get; set; }
+        public Ticket(int slotNumber,int ticketId, string vehicleNumber, string inTime, string outTime)
+        {
+            this.slotNumber = slotNumber;
+            this.ticketId = ticketId;
+            this.vehicleNumber = vehicleNumber;
+            this.inTime = inTime;
+            this.outTime = outTime;
+        }
     }
 }
