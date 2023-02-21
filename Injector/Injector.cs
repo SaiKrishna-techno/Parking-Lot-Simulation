@@ -1,4 +1,5 @@
 ﻿using ParkingLot.Interfaces;
+using ParkingLot.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,41 +23,44 @@ namespace ParkingLot.Injector
         }
 
         // Methods of SlotService
-        public void  BookSlot()
+        public bool  BookSlot(int slotNumber,string type)
         {
-            this.slot.BookSlot();
+          return   this.slot.BookSlot(slotNumber,type);
         }
 
-        public void ViewVacantSlot()
+        public int ViewVacantSlot( string type)
         {
-            this.slot.ViewVacantSlot();
+           return this.slot.ViewVacantSlot(type);
+            
         }
 
-        public void ClearSlot(int k)
+        public bool ClearSlot(int slotNumber,string type)
         {
-            this.slot.ClearSlot(k);
+           return this.slot.ClearSlot(slotNumber,type);
         }
 
-        public void GetSlots(string type)
+        public int GetSlotsStatus(string type)
         {
-            this.slot.GetSlots(type);
+             return this.slot.GetSlotsStatus(type);
         }
 
-        public void InitializeSlots(string type,int size)
+        public bool InitializeSlots(string type,int size)
         {
-            this.slot.InitializeSlots(type,size);
+             return this.slot.InitializeSlots(type,size);
         }
+
+       
 
         //Methods of Ticket Service
 
-        public void DeleteTicket(int k)
+        public int DeleteTicket(int ticketId,string type)
         {
-            this.ticket.DeleteTicket(k);
+           return this.ticket.DeleteTicket(ticketId,type);
         }
 
-        public void TakeTicketInfo()
+        public bool CreateTicket(Ticket ticket,string type)
         {
-            this.ticket.TakeTicketInfo();
+             return this.ticket.CreateTicket(ticket,type);
         }
 
         // Methods of Parking Service

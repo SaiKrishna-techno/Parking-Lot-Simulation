@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParkingLot.Model;
 
 namespace ParkingLot.Interfaces
 {
     internal interface ISlot
     {
-        public void InitializeSlots(string type,int size);
-        public void BookSlot();
+        public bool InitializeSlots(string type,int size);
 
-        public void GetSlots(string type);
-        public void ClearSlot(int slotNumber);
+        public bool BookSlot(int slotNumber,string type);
 
-        public int ViewVacantSlot();
+        public int GetSlotsStatus(string type);
+
+        public bool ClearSlot(int slotNumber,string type);
+
+        public int ViewVacantSlot(string type);
+        
     }
 }

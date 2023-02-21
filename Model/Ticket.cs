@@ -10,9 +10,9 @@ namespace ParkingLot.Model
     {
         public int slotNumber;
         public int ticketId;
-        public string vehicleNumber;
-        public string inTime;
-        public string outTime;
+        public string vehicleNumber ;
+        public string inTime ;
+        public string outTime ;
 
         public Ticket(int slotNumber,int ticketId, string vehicleNumber, string inTime, string outTime)
         {
