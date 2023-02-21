@@ -15,7 +15,7 @@ namespace ParkingLot.Interfaces
 
         public int GetSlotsStatus(string type);
 
-        public bool ClearSlot(int slotNumber,string type);
+        public bool ClearSlot(int slotNumber);
 
         public int ViewVacantSlot(string type);
         

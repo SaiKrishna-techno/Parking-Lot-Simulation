@@ -12,14 +12,12 @@ namespace ParkingLot.Injector
     {
         public ISlot slot;
         public ITicket ticket;
-        public IPark park;
 
         //Constructor for the Injector
-        public Injector(ISlot slot, ITicket ticket, IPark park)
+        public Injector(ISlot slot, ITicket ticket)
         {
             this.slot = slot;
             this.ticket = ticket;
-            this.park = park;
         }
 
         // Methods of SlotService
@@ -34,9 +32,9 @@ namespace ParkingLot.Injector
             
         }
 
-        public bool ClearSlot(int slotNumber,string type)
+        public bool ClearSlot(int slotNumber)
         {
-           return this.slot.ClearSlot(slotNumber,type);
+           return this.slot.ClearSlot(slotNumber);
         }
 
         public int GetSlotsStatus(string type)
@@ -53,9 +51,9 @@ namespace ParkingLot.Injector
 
         //Methods of Ticket Service
 
-        public int DeleteTicket(int ticketId,string type)
+        public int DeleteTicket(int ticketId)
         {
-           return this.ticket.DeleteTicket(ticketId,type);
+           return this.ticket.DeleteTicket(ticketId);
         }
 
         public bool CreateTicket(Ticket ticket,string type)
@@ -63,17 +61,7 @@ namespace ParkingLot.Injector
              return this.ticket.CreateTicket(ticket,type);
         }
 
-        // Methods of Parking Service
-
-        public void ParkVehicle()
-        {
-            this.park.ParkVehicle();
-        }
-
-        public void UnparkVehicle()
-        {
-            this.park.UnParkVehicle();
-        }
+        
 
     }
 }

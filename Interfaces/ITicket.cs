@@ -10,6 +10,6 @@ namespace ParkingLot.Interfaces
     internal interface ITicket
     {
         public bool CreateTicket(Ticket ticket,string type);
-        public int DeleteTicket(int ticketId,string type);
+        public int DeleteTicket(int ticketId);
     }
 }

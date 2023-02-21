@@ -9,7 +9,7 @@ namespace ParkingLot.Model
 {
     internal class Slot
     {
-        public string? slotType;
+        public string slotType;
         public int slotNumber;
         public bool isOccupied { get;set;}=false;
     }

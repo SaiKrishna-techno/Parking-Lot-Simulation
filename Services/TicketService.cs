@@ -10,39 +10,19 @@ namespace ParkingLot.Services
 {
     internal class TicketService : ITicket
     {
-        public SlotService slot=new SlotService();
-        public List<Ticket> TwoWheelerTickets= new List<Ticket>();
-        public List<Ticket> FourWheelerTickets= new List<Ticket>();
-        public List<Ticket> HeavyVehicleTickets= new List<Ticket>();
+       
+        public List<Ticket> allTickets= new List<Ticket>();
 
-        public int DeleteTicket(int ticketIds,string type)
+        public int DeleteTicket(int ticketIds)
         {
-            if (type == "TwoWheeler")
+
+            for(int i = 0; i < allTickets.Count; i++)
             {
-              
-              int status= this.RemoveTicket(TwoWheelerTickets,ticketIds);
-                if (status!=-1)
+                if (allTickets[i].ticketId==ticketIds)
                 {
-                   
-                     return status;
-                }
-            }
-            if (type == "FourWheeler")
-            {
-               int status= this.RemoveTicket(FourWheelerTickets,ticketIds);
-                if (status!=-1)
-                {
-                   
-                     return status;
-                }
-             
-            }
-            if (type == "HeavyVehicle")
-            {
-               int status= this.RemoveTicket(HeavyVehicleTickets,ticketIds);
-                if (status!=-1)
-                {  
-                     return status;
+                    var tempTicket=allTickets[i].slotNumber;
+                    allTickets.RemoveAt(i);
+                    return tempTicket;
                 }
             }
             return -1;
@@ -50,42 +30,14 @@ namespace ParkingLot.Services
 
         public bool CreateTicket(Ticket ticket,string type)
         {
-            
-            if (type == "TwoWheeler")
+
+            if(type=="TwoWheeler"||type=="FourWheeler" || type == "HeavyVehicle")
             {
-                this.TwoWheelerTickets.Add(ticket);
-                return true;
-            }
-            else if (type == "FourWheeler")
-            {
-                this.FourWheelerTickets.Add(ticket);
-                return true;
-            }
-            else if (type == "HeavyVehicle")
-            {
-                this.HeavyVehicleTickets.Add(ticket);
-                return true;
+            allTickets.Add(ticket);
+            return true;
             }
             return false;
         }
-
-        public int RemoveTicket(List<Ticket> ticketList,int ticketId)
-        {
-
-            try
-            {
-                Ticket deletingTicket=ticketList.
-                    Where(n=>n.ticketId==ticketId)
-                    .Select(n=>n)
-                    .First();
-
-               ticketList.Remove(deletingTicket);
-                return deletingTicket.slotNumber;
-            }
-            catch
-            {
-                return -1;
-            }
-        }
+       
     }
 }

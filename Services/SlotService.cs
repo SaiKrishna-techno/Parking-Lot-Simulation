@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using ParkingLot.Interfaces;
+﻿using ParkingLot.Interfaces;
 using ParkingLot.Model;
+using ParkingLot.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,154 +13,100 @@ namespace ParkingLot.Services
     internal class SlotService : ISlot
     {
 
-       public  List<Slot> TwoWheelerSlots = new List<Slot>();
-       public  List<Slot> FourWheelerSlots = new List<Slot>();
-       public  List<Slot> HeavyVehicleSlots = new List<Slot>();
+      
+        public List<Slot> allSlots= new List<Slot>();
 
 
         public bool BookSlot(int slotNumber,string type)
         {
-            if (type == "TwoWheeler")
-            {
-              
-                this.TwoWheelerSlots[slotNumber].isOccupied=true;
-                return true;
-            }
-            if (type=="FourWheeler")
-            {
-                this.FourWheelerSlots[slotNumber].isOccupied=true;
-                return true;
-            }
-            if (type == "HeavyVehicle")
-            {
-                this.HeavyVehicleSlots[slotNumber].isOccupied=true;
-                return true;
-            }
+        
+          for(int i = 0; i < allSlots.Count; i++)
+          {
+                if (allSlots[i].slotType==type && allSlots[i].slotNumber == slotNumber)
+                {
+                    allSlots[i].isOccupied=true;
+                    return true;
+                }
+
+          }
             return false;
         }
-
-        public bool ClearSlot(int slotNumber,string type)
+        
+        
+        public bool ClearSlot(int slotNumber)
         {
-             if (type == "TwoWheeler")
+
+            for(int i = 0; i < allSlots.Count; i++)
             {
-                this.TwoWheelerSlots[slotNumber].isOccupied=false;
-                return true;
-            }
-            else if (type=="FourWheeler")
-            {
-                this.FourWheelerSlots[slotNumber].isOccupied=false;
-                return true;
-            }
-            else if (type == "HeavyVehicle")
-            {
-                this.HeavyVehicleSlots[slotNumber].isOccupied=false;
-                return true;
+                if ( allSlots[i].slotNumber == slotNumber)
+                {
+                    allSlots[i].isOccupied=false;
+                    return true;
+                }
+
             }
             return false;
-            
         }
 
+        
         public int  GetSlotsStatus(string type)
         {
-            if(type == "TwoWheeler")
-            {
-              return this.VacantSlots(TwoWheelerSlots);
-            }
-            if(type == "FourWheeler")
-            {
-                return this.VacantSlots(FourWheelerSlots);
-            }
-            if (type == "HeavyVehicle")
-            {
-                return this.VacantSlots(HeavyVehicleSlots);
-            }
-            return -1;
+           return this.VacantSlots(type);
         }
+
        
         public bool InitializeSlots(string type,int size)
         {
-            if (type == "TwoWheelerSlots")
+            int beforeCommencing=this.allSlots.Count;
+            this.CommenceSlots(size,type);
+            int afterCommencing=this.allSlots.Count;
+            if (afterCommencing-beforeCommencing == size)
             {
-              this.CommenceSlots(TwoWheelerSlots,size,type);
-              if (this.TwoWheelerSlots.Count == size)
-              {
-                    return true;
-              }
-              return false;
-               
+                return true;
             }
-
-            if(type == "FourWheelerSlots")
-            {
-               this.CommenceSlots(FourWheelerSlots,size,type);
-               if (this.FourWheelerSlots.Count == size)
-               {
-                    return true;
-               }
-                return false;
-             }
-
-             if (type == "HeavyVehicleSlots"){
-                
-                   this.CommenceSlots(HeavyVehicleSlots,size,type);
-
-                   if (this.HeavyVehicleSlots.Count == size)
-                   {
-                     return true;
-                   }
-                return false;
-                
-            }
-            return false;
-          
-            
+            return false; 
         }
+        
 
         public int ViewVacantSlot(string type)
         {
-            if (type == "TwoWheeler")
-            {
-                 return this.ReturnVacantSlot(TwoWheelerSlots);
-            }
-            if  (type == "FourWheeler"){
-                return this.ReturnVacantSlot(FourWheelerSlots);
-            }
-             if (type == "HeavyVehicle") { 
-               return this.ReturnVacantSlot(HeavyVehicleSlots);
-            }
-            return -1;
+        for(int i = 0; i < allSlots.Count; i++)
+        {       
+                if (allSlots[i].slotType==type && allSlots[i].isOccupied == false)
+                {
+                    return i;
+                }
+        }
+        return -1;
         }
 
-        public int ReturnVacantSlot(List<Slot> Slot)
+       
+        public void CommenceSlots(int Size,string type)
         {
-            try { 
-            int slotNumber = Slot.Where(n=>n.isOccupied==false)
-                .Select(n=>n.slotNumber)
-                .First();
-                return slotNumber;
-            }
-            catch(Exception e)
-            {
-                return -1;
-            }
-        }
-
-        public void CommenceSlots(List<Slot> SlotToBeCommenced,int Size,String type)
-        {
-            for(int i = 0; i < Size; i++)
+            int previousSlotCount=this.allSlots.Count;
+            for(int i = previousSlotCount; i < previousSlotCount+Size; i++)
             {
                  Slot tempSlot= new Slot();
-                 tempSlot.isOccupied=false;
                  tempSlot.slotNumber=i;
                  tempSlot.slotType=type;
-                SlotToBeCommenced.Add(tempSlot);
+                 this.allSlots.Add(tempSlot);
             }
         }
 
-        public int VacantSlots(List<Slot> targetSlots)
+        
+        public int VacantSlots(string type)
         {
-            int  vacantSlotCount=targetSlots.Where(n=>n.isOccupied==false).Count();
-            return vacantSlotCount;
+            try { 
+                int  vacantSlotCount=allSlots.
+                Where(n=>n.slotType==type && n.isOccupied==false)
+                .Select(n=>n)
+                .Count();
+                return vacantSlotCount;
+                }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
     }
 }
