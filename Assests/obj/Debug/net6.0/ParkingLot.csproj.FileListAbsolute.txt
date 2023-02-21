@@ -1,0 +1,36 @@
+C:\Users\ivsds\source\repos\ParkingLot\bin\Debug\net6.0\ParkingLot.exe
+C:\Users\ivsds\source\repos\ParkingLot\bin\Debug\net6.0\ParkingLot.deps.json
+C:\Users\ivsds\source\repos\ParkingLot\bin\Debug\net6.0\ParkingLot.runtimeconfig.json
+C:\Users\ivsds\source\repos\ParkingLot\bin\Debug\net6.0\ParkingLot.dll
+C:\Users\ivsds\source\repos\ParkingLot\bin\Debug\net6.0\ParkingLot.pdb
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.csproj.AssemblyReference.cache
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.AssemblyInfoInputs.cache
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.AssemblyInfo.cs
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.csproj.CoreCompileInputs.cache
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.dll
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\refint\ParkingLot.dll
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.pdb
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.genruntimeconfig.cache
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ref\ParkingLot.dll
+C:\Users\ivsds\source\repos\ParkingLot\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ivsds\source\repos\ParkingLot\obj\Debug\net6.0\ParkingLot.csproj.CopyComplete
+C:\Users\ivsds\source\repos\ParkingLot\bin\Debug\net6.0\Assests\Slots.json
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.csproj.AssemblyReference.cache
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.AssemblyInfoInputs.cache
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.AssemblyInfo.cs
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.csproj.CoreCompileInputs.cache
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.dll
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\refint\ParkingLot.dll
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.pdb
+C:\Users\ivsds\source\repos\ParkingLot using lists\bin\Debug\net6.0\Assests\Slots.json
+C:\Users\ivsds\source\repos\ParkingLot using lists\bin\Debug\net6.0\ParkingLot.exe
+C:\Users\ivsds\source\repos\ParkingLot using lists\bin\Debug\net6.0\ParkingLot.deps.json
+C:\Users\ivsds\source\repos\ParkingLot using lists\bin\Debug\net6.0\ParkingLot.runtimeconfig.json
+C:\Users\ivsds\source\repos\ParkingLot using lists\bin\Debug\net6.0\ParkingLot.dll
+C:\Users\ivsds\source\repos\ParkingLot using lists\bin\Debug\net6.0\ParkingLot.pdb
+C:\Users\ivsds\source\repos\ParkingLot using lists\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.csproj.CopyComplete
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ParkingLot.genruntimeconfig.cache
+C:\Users\ivsds\source\repos\ParkingLot using lists\obj\Debug\net6.0\ref\ParkingLot.dll

@@ -1,0 +1,21 @@
+{
+  "TwoWheelerSlots": [
+    {
+      "slotType": "TwoWheelerSlot",
+      "slotNumber": 99,
+      "isoccupied": false
+    }
+  ],
+  "FourWheelerSlots": [
+    {
+
+    }
+
+  ],
+  "HeavyVehicleSlots": [
+    {
+
+    }
+
+  ]
+}
