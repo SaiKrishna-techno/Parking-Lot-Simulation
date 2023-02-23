@@ -13,10 +13,10 @@ namespace ParkingLot.Services
     internal class SlotService : ISlot
     {
 
-      
+      // List to Store All Types of Slots
         public List<Slot> allSlots= new List<Slot>();
 
-
+        // Method which Books the Slot and CHnages its Status
         public bool BookSlot(int slotNumber,string type)
         {
         
@@ -32,7 +32,7 @@ namespace ParkingLot.Services
             return false;
         }
         
-        
+        //Method Which CLears The SLot and Changes Its status
         public bool ClearSlot(int slotNumber)
         {
 
@@ -48,13 +48,13 @@ namespace ParkingLot.Services
             return false;
         }
 
-        
+        // Method to Get the SLot status of the Specified type of Slot
         public int  GetSlotsStatus(string type)
         {
            return this.VacantSlots(type);
         }
 
-       
+       //Method That Initializes the Slots
         public bool InitializeSlots(string type,int size)
         {
             int beforeCommencing=this.allSlots.Count;
@@ -67,20 +67,21 @@ namespace ParkingLot.Services
             return false; 
         }
         
-
+        // Method Which Returns the Vacant Slot 
         public int ViewVacantSlot(string type)
         {
-        for(int i = 0; i < allSlots.Count; i++)
-        {       
-                if (allSlots[i].slotType==type && allSlots[i].isOccupied == false)
-                {
-                    return i;
-                }
-        }
-        return -1;
+            try
+            {
+                int i = allSlots.Where(x => x.slotType == type && x.isOccupied==false).Select(x => x.slotNumber).First();
+                return i;
+            } catch (Exception e)
+            {
+                return -1;
+            }
+      
         }
 
-       
+       // Method which Creates the Slots and Adds to The List 
         public void CommenceSlots(int Size,string type)
         {
             int previousSlotCount=this.allSlots.Count;
@@ -93,7 +94,7 @@ namespace ParkingLot.Services
             }
         }
 
-        
+        // Returns the Number of Vacant Slots in that particular Type
         public int VacantSlots(string type)
         {
             try { 

@@ -56,9 +56,9 @@ namespace ParkingLot.Injector
            return this.ticket.DeleteTicket(ticketId);
         }
 
-        public bool CreateTicket(Ticket ticket,string type)
+        public bool CreateTicket(Ticket ticket)
         {
-             return this.ticket.CreateTicket(ticket,type);
+             return this.ticket.CreateTicket(ticket);
         }
 
         

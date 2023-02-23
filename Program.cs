@@ -2,6 +2,7 @@
 using ParkingLot.Interfaces;
 using ParkingLot.Model;
 using ParkingLot.Services;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 
 namespace Parkinglot
@@ -13,23 +14,33 @@ namespace Parkinglot
          {  
 
                  Parkinglot parkingLot = new Parkinglot();
+                 Console.WriteLine("Please enter the number of Two Wheeler slots and Four Wheeler Slots and Heavy Vehicle Slots");
+
+                 int numberOfTwoWheelerSlots = 0;
+                 int numberOfFourWheelerSlots = 0;
+                 int numberOfHeavyVehicleSlots = 0;
+           
+                 SlotInitialisation:
+                 try
+                 {
+                      numberOfTwoWheelerSlots = Convert.ToInt32(Console.ReadLine());
+                      numberOfFourWheelerSlots = Convert.ToInt32(Console.ReadLine());
+                      numberOfHeavyVehicleSlots = Convert.ToInt32(Console.ReadLine());
+                 }
+                 catch (Exception ex)
+                 {
+                      Console.WriteLine(ex.Message +"Please Try Again");
+                      goto SlotInitialisation;
+              
+                 }
              
-                 Console.WriteLine("Please enter the number of Two Wheeler slots");
-                 int numberOfTwoWheelerSlots = Convert.ToInt32(Console.ReadLine());
 
-                 Console.WriteLine("Please enter the number of Four Wheeler slots");
-                 int numberOfFourWheelerSlots = Convert.ToInt32(Console.ReadLine());
-
-                 Console.WriteLine("Please enter the number of Heavy Vehicle  slots");
-                 int numberOfHeavyVehicleSlots = Convert.ToInt32(Console.ReadLine());
-
-             
+            // Dealing With Dependency Injection and Creating injector object
                  ISlot slot = new SlotService();
                  ITicket ticket = new TicketService();
-               
-
                  Injector injector= new Injector(slot, ticket);
 
+                 //Initializing The Slots
                  bool twoWheelerSlotStatus= injector.InitializeSlots("TwoWheeler", numberOfTwoWheelerSlots);
                  bool fourWheelerSlotStatus= injector.InitializeSlots("FourWheeler", numberOfFourWheelerSlots);
                  bool heavyVehicleSlotStatus=injector.InitializeSlots("HeavyVehicle", numberOfHeavyVehicleSlots);
@@ -47,17 +58,27 @@ namespace Parkinglot
 
 
 
+                 // Main FUnctionality Starts From Here
                  while (true)
                  {
                           Console.WriteLine("\nOptions:\n Enter 1 to Unpark \n Enter 2 for 2 wheeler \n Enter 3 for 4 wheeler \n Enter 4 for Heavy Vehicle \n Enter 0 to Exit");
                           int userOption = Convert.ToInt32(Console.ReadLine());
 
                           switch (userOption) { 
+                    // Case Dealing with the Unparking of Vehicle
                               case 1:
-                                    {
-                                         Console.WriteLine("Inside 0");   
+                                    {  
+                                         
                                          Console.WriteLine("\nPlease Enter the Ticket Id");
-                                         int ticketId=Convert.ToInt32(Console.ReadLine());
+                            int ticketId = 0;
+                            try
+                            {
+                                 ticketId = Convert.ToInt32(Console.ReadLine());
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Invalid Ticket Format");
+                            }
                                          int ticketDeleteid=injector.DeleteTicket(ticketId);
                                          if (ticketDeleteid!=-1)
                                          {
@@ -76,12 +97,14 @@ namespace Parkinglot
                                          }
                                          else
                                          {
-                                                   Console.WriteLine("Unparking was UnSuccessful");
+                                                   Console.WriteLine("Ticket Does Not Exist \n Please Try Again");
+
                                          }
 
                                                    break;
                    
                                     }
+                        // Case Dealing with the Parking of Vehicle
                               case 2:
                                    {
                                          int  vacantSlot=injector.ViewVacantSlot("TwoWheeler");
@@ -94,7 +117,7 @@ namespace Parkinglot
                                          {
 
                                                Ticket userTicket = parkingLot.TakeTicketInput(vacantSlot,"TwoWheeler");
-                                               bool ticketStatus=injector.CreateTicket(userTicket,"TwoWheeler");
+                                               bool ticketStatus=injector.CreateTicket(userTicket);
                                                if (ticketStatus)
                                                {
                           
@@ -121,7 +144,7 @@ namespace Parkinglot
                                    }
                              case 3:
                                    {
-                                               Console.WriteLine("Inside 3");
+                                               
                                                int  vacantSlot=injector.ViewVacantSlot("FourWheeler");
                                                if(vacantSlot == -1)
                                                {
@@ -132,7 +155,7 @@ namespace Parkinglot
                                                {
                          
                                                        Ticket userTicket = parkingLot.TakeTicketInput(vacantSlot,"FourWheeler");
-                                                       bool ticketStatus=injector.CreateTicket(userTicket,"FourWheeler");
+                                                       bool ticketStatus=injector.CreateTicket(userTicket);
                                                        if (ticketStatus)
                                                        {
                                                                 parkingLot.PrintTicket(userTicket);
@@ -155,10 +178,9 @@ namespace Parkinglot
                                                }
                                                         break;    
                                    }
-
+                        
                              case 4:
                                    {
-                                            Console.WriteLine("Inside 4 ");
                                             int  vacantSlot=injector.ViewVacantSlot("HeavyVehicle");
                                             if(vacantSlot == -1)
                                             {
@@ -169,7 +191,7 @@ namespace Parkinglot
                                             {
 
                                                     Ticket userTicket = parkingLot.TakeTicketInput(vacantSlot,"HeavyVehicle");
-                                                    bool ticketStatus=injector.CreateTicket(userTicket,"HeavyVehicle");
+                                                    bool ticketStatus=injector.CreateTicket(userTicket);
                                             
                                                     if (ticketStatus)
                                                     {
@@ -208,20 +230,40 @@ namespace Parkinglot
 
          }
 
+        //Method to Take the Required Information to Create a Ticket 
         public Ticket TakeTicketInput(int vacantSlot,string type)
         {
+         
              Random random = new Random();
              int ticketNumber=random.Next(1000,9999);
              Console.WriteLine("Please Enter the Vehicle Number");
              string vehicleId=Console.ReadLine();           
              DateTime inTime=DateTime.Now;
+             UserInput:
              Console.WriteLine("Enter the number of minutes you wish to Stay");
-             int duration= Convert.ToInt32(Console.ReadLine());
+            int duration=0;
+            try
+            {
+                duration =Convert.ToInt32(Console.ReadLine());
+                if(duration < 10)
+                {
+                    Console.WriteLine("Minimum Time Should be 10 Minutes");
+                    goto UserInput;
+                }
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Incorrect Input\n Please try again");
+                goto UserInput;
+                
+            }
              DateTime outTime=inTime.AddHours(duration/60).AddMinutes(duration%60);
              Ticket userticket = new Ticket(vacantSlot,ticketNumber,type,vehicleId,inTime.ToString("t"),outTime.ToString("t"));
-            return userticket;
+             return userticket;
         }
 
+        // Method to Print The Ticket 
         public void PrintTicket(Ticket ticket)
         {
             Console.WriteLine("Ticket Created Successfully");

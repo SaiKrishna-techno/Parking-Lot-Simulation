@@ -10,33 +10,31 @@ namespace ParkingLot.Services
 {
     internal class TicketService : ITicket
     {
-       
+     
+        //We Will be Storing All The Tickets Here in this List
         public List<Ticket> allTickets= new List<Ticket>();
 
+        // Method to Delete the Ticket from the List based on the TicketIDs
         public int DeleteTicket(int ticketIds)
         {
-
-            for(int i = 0; i < allTickets.Count; i++)
+            try
             {
-                if (allTickets[i].ticketId==ticketIds)
-                {
-                    var tempTicket=allTickets[i].slotNumber;
-                    allTickets.RemoveAt(i);
-                    return tempTicket;
-                }
+                Ticket ticket = allTickets.Where(x => x.ticketId == ticketIds).First();
+                allTickets.Remove(ticket);
+                return ticket.slotNumber;
             }
+            catch { 
             return -1;
+            }
+
+          
         }
 
-        public bool CreateTicket(Ticket ticket,string type)
-        {
-
-            if(type=="TwoWheeler"||type=="FourWheeler" || type == "HeavyVehicle")
-            {
+        // Method to Add the Ticket To the List 
+        public bool CreateTicket(Ticket ticket)
+        { 
             allTickets.Add(ticket);
             return true;
-            }
-            return false;
         }
        
     }
