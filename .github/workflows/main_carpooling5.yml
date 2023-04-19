@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'CarPooling5'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_491C1E0A3AB748979EFB25EA1DA1A4ED }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2A5E4F1B9CC644D7B2D31647E5DAE184 }}
           package: .
